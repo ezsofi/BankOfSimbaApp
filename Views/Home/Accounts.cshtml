@@ -1,0 +1,57 @@
+﻿@using BankOfSimbaApp.Models.ViewModels
+@model AccountsViewModel
+@{
+    var accounts = Model.Accounts;
+}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>BankOfSimba</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="~/styles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="title_container">
+        <div class="header">
+            <p> Bank of Simba</p>
+        </div>
+    </div>
+    
+    <div class="table_action_container">
+        <div class="accountsTable">
+            <table>
+                <thead>
+                    <tr>
+                        <th>index</th>
+                        <th>Account name</th>
+                        <th>Account balance</th>
+                        <th>Animal Type</th>
+                        <th>King?</th>
+                        <th>Good or bad?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < accounts.Count; i++)
+                    {
+                        <tr>
+                            <td> @(i+1)</td>
+                            <td> @accounts[i].Name</td>
+                            <td> @accounts[i].BalanceTwoDecimals</td>
+                            <td> @accounts[i].AnimalType</td>
+                            <td class="@accounts[i].IsKing==true ? "classKing":"classNoKing")"> @accounts[i].IsKing</td>
+                            <td> @accounts[i].IsGood</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="addaccount_container">
+            @Html.Partial("_AddAccount")
+        </div>
+        <div class="raisebalance_container">
+            @Html.Partial("_RaiseBalance")
+        </div>
+    </div>
+    
+    
+</body>
+</html>
